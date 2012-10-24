@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+				"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+				"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" /> <!-- set to false for prod -->
+	
+	<constant name="struts.multipart.maxSize" value="5097152" />
+	<constant name="struts.custom.i18n.resources" value="struts-messages" />
+	
+    <!-- constant name="struts.i18n.encoding" value="UTF-8" /> -->
+      
+	<!-- Home redirect -->
+	<package name="root-redirect" namespace="/" extends="struts-default">
+		<action name="">	
+			<result type="redirect">home</result>
+		</action>
+	</package>
+
+	<!-- Actions -->
+	<package name="home" namespace="/" extends="struts-default,json-default">
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>	
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<!-- Home -->
+		<action name="home" class="actions.general.WelcomeAction">
+			<result name="success" type="tiles">/general.home</result>
+		</action>
+		
+		<!-- Login -->
+		<action name="login-*" class="actions.login.LoginAction" method="{1}">
+			<result name="success" type="tiles">/general.home</result>
+			<result name="redirectTo" type="redirectAction">
+            	<param name="actionName">${redirectTo}</param>
+            	<param name="namespace">/</param>
+            </result>
+			<result name="login.home" type="tiles">/login.home</result>
+			<result name="input" type="tiles">/login.home</result>
+		</action>
+		
+	</package>
+	
+</struts>

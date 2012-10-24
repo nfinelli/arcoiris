@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="bo.User" table="user">
+        
+        <id name="idUser" type="integer" column="idUser">
+            <generator class="native" />
+        </id>
+        <property name="email" type="string" not-null="true" length="140" column="email" />
+        <property name="password" type="string" not-null="true" length="50" column="password" />
+
+        <many-to-one name="profile" column="idProfile" cascade="all" unique="true" lazy="false"/>
+        
+        <set name="recommendations" inverse="true" cascade="all">
+   			<key>
+                <column name="idUser" />
+            </key>
+            <one-to-many class="bo.Recommendation" />
+        </set>
+        
+    </class>
+</hibernate-mapping>
