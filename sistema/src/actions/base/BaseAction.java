@@ -21,7 +21,7 @@ public class BaseAction extends ActionSupport implements SessionAware {
 	private Logger logger;
 		
 	protected void setRedirect(String r){
-		this.redirect = r;
+		this.redirect = r; 
 	}
 	
 	public String getRedirect(){
