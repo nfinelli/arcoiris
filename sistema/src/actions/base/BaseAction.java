@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-
+  
 public class BaseAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +17,7 @@ public class BaseAction extends ActionSupport implements SessionAware {
 	
 	private Map<String,Object> session;
 	
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused")	
 	private Logger logger;
 		
 	protected void setRedirect(String r){
@@ -26,7 +26,7 @@ public class BaseAction extends ActionSupport implements SessionAware {
 	
 	public String getRedirect(){
 		
-//		if (this.redirect == null) {
+//		 if (this.redirect == null) {
 //			return Constants.BUSINESS_VIEW;
 //		}
 		return this.redirect;
