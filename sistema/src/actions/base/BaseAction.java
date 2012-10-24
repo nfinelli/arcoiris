@@ -19,7 +19,7 @@ public class BaseAction extends ActionSupport implements SessionAware {
 	
 	@SuppressWarnings("unused")	
 	private Logger logger;
-		 
+		  
 	protected void setRedirect(String r){
 		this.redirect = r; 
 	}
