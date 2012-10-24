@@ -30,6 +30,9 @@ public class BaseAction extends ActionSupport implements SessionAware {
 //			return Constants.BUSINESS_VIEW;
 //		}
 		return this.redirect;
+		
+		
+		
 	}
 	
 	public void setSession(Map<String,Object> session) {
