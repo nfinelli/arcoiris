@@ -29,7 +29,7 @@
 		
 		
 		<!-- All the entity classes for hibernate to check for annotations here 
-		<mapping resource="config/hibernate/---ENTITY--.hbm.xml"/>
+		<mapping resource="config/hibernate/ENTITY.hbm.xml"/>
 		-->
 		
 		
