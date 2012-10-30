@@ -12,4 +12,5 @@ public class PersistentObject implements Serializable {
 
 	private Long idEmpleado;
 	
+	// Test commit
 }
