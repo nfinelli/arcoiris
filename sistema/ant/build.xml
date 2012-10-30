@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="AppBuilder" default="war" basedir="..">
+	<property file="ant/build.properties"/>
+	
+	<path id="classpath">
+ 		<fileset dir="${lib.dir}" />
+	</path>
+	
+	<target name="clean">
+		<echo>Cleaning the ${build.dir}</echo>
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="init" depends="clean">
+		<echo>Creating the build directory</echo>
+		<mkdir dir="${build.dir}/WEB-INF/classes"/>
+		<mkdir dir="${build.dir}/WEB-INF/lib"/>
+	</target>
+	
+	<target name="compile" depends="init">
+		<echo>Compile the source files</echo>
+		<javac srcdir="${src.dir}" destdir="${build.dir}/WEB-INF/classes">
+			<classpath refid="classpath"/>
+		</javac>
+	</target>
+	
+	<target name="copy" depends="compile">
+		<!-- copy todir="${build.dir}/WEB-INF">
+			<fileset dir="${conf.dir}"/>
+		</copy-->
+		<copy todir="${build.dir}">
+			<fileset dir="${web.content}"/>
+		</copy>
+		<copy todir="${build.dir}/WEB-INF/lib">
+			<fileset dir="${lib.dir}"/>
+		</copy>
+		<copy todir="${build.dir}/WEB-INF/classes/config/hibernate">
+			<fileset dir="${src.dir}/config/hibernate"/>
+		</copy>
+		<copy file="${src.dir}/hibernate.cfg.xml" todir="${build.dir}/WEB-INF/classes" />
+		<copy file="${src.dir}/log4j.properties" todir="${build.dir}/WEB-INF/classes" />
+		<copy file="${src.dir}/struts-messages.properties" todir="${build.dir}/WEB-INF/classes" />
+		<copy file="${src.dir}/struts.xml" todir="${build.dir}/WEB-INF/classes" />
+		<copy file="${src.dir}/util/buses.properties" todir="${build.dir}/WEB-INF/classes/util" />   
+	</target>
+	
+	<target name="war" depends="copy">
+		<echo>Building the war file</echo>
+		<war destfile="${dist.dir}/${project.name}.war" webxml="${build.dir}/WEB-INF/web.xml">
+			<fileset dir="${build.dir}"/>
+		</war>
+		<copy todir="${tomcat.dir}">
+			<fileset dir="${dist.dir}"/>
+		</copy>
+	</target>
+	
+</project>
