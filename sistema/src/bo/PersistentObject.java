@@ -9,8 +9,8 @@ public class PersistentObject implements Serializable {
 	private Long id;
 	
 	private Date timestamp;
-
+ 
 	private Long idEmpleado;
-	
+	 
 	// Test commit
 }
